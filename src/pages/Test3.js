@@ -1,25 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Question from '../components/Question';
-
+const positions = ['Event name,x,y,timestamp']
 const Test3 = () => {
+  useEffect(() => {
+    const root = document.getElementById('root')
+    root.className += 'hide'
+    window.addEventListener('scroll', scrollHandler)
+    return () => {
+      window.removeEventListener('scroll', scrollHandler)
+    }
+  }, [])
+
+  const scrollHandler = (e) => {
+    positions.push(`scroll,,,${e.timeStamp}\n`)
+  }
+
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+
+    console.log('unmounting')
+    const element = document.createElement("a");
+    const file = new Blob(positions, { type: 'text/csv' });
+    element.href = URL.createObjectURL(file);
+    element.download = "myFile.csv";
+    document.body.appendChild(element); // Required for this to work in FireFox
+    element.click();
+  }
   return (
-    <div className='container'>
-      <div className="row my-5">
+    <div className='container' id='test3'
+      onMouseMove={(e) => {
+        // console.log('mouse move x ', e.pageX, ' y ', e.pageY, e);
+        positions.push(`mouse move,${e.pageX},${e.pageY},${e.timeStamp}\n`)
+      }}
+      onClick={(e) => {
+        // console.log('mouse clicked', e);
+        positions.push(`click,${e.pageX},${e.pageY},${e.timeStamp}\n`)
+      }}
+    >
+      <div className="row py-5">
         Please complete this online form.
       </div>
 
-      <form className="border p-3">
-        {/* <div className="row">
-          <div className="col">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name"></input>
-          </div>
-          <div className="col">
-            <label for="surname" class="form-label">Surname</label>
-            <input type="text" class="form-control" id="surname"></input>
-          </div>
-        </div> */}
-
+      <form className="border p-3" onSubmit={submitHandler}>
         {/* Q1. */}
 
         <div className="row my-2">
@@ -83,7 +106,7 @@ const Test3 = () => {
               qid='q8'
               instruction="Please go to Q5"
             />
-            
+
             <Question
               question='Q9. Do you generally prefer Drama or Science Fiction Movies?'
               options={['Drama', 'Science Fiction']}
@@ -100,7 +123,7 @@ const Test3 = () => {
 
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <p type="submit" className="btn btn-primary">Submit</p>
       </form>
     </div>
   )
