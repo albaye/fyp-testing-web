@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Question from '../components/Question';
 const positions = ['Event name,x,y,timestamp\n']
 const Test3 = () => {
+  let xPosition, yPosition, prevScroll = 0;
   useEffect(() => {
     console.log('aaaaaaa')
     const root = document.getElementById('root')
@@ -13,9 +14,9 @@ const Test3 = () => {
   }, [])
 
   const scrollHandler = (e) => {
-    positions.push(`scroll,,,${e.timeStamp}\n`)
+    console.log('mouse scroll x ', xPosition, ' y ', yPosition + window.scrollY - prevScroll);
+    positions.push(`scroll,${xPosition},${yPosition + window.scrollY - prevScroll},${e.timeStamp}\n`)
   }
-
 
   const submitHandler = (e) => {
     console.log("submit")
@@ -32,7 +33,10 @@ const Test3 = () => {
   return (
     <div className='container' id='test3'
       onMouseMove={(e) => {
-        // console.log('mouse move x ', e.pageX, ' y ', e.pageY, e);
+        xPosition = e.pageX;
+        yPosition = e.pageY;
+        prevScroll = window.scrollY;
+        console.log('mouse move x ', e.pageX, ' y ', e.pageY);
         positions.push(`mouse move,${e.pageX},${e.pageY},${e.timeStamp}\n`)
       }}
       onClick={(e) => {

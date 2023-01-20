@@ -2,7 +2,7 @@
   "name": "testing_web",
   "homepage": "https://albaye.github.io/fyp-testing-web/",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "engines": {
     "node": "18.x"
   },

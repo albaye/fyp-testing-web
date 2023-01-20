@@ -1,15 +1,15 @@
 // import logo from './logo.svg';
 import './App.css';
-import { Router } from 'react-router-dom';
+import BrowserRouter from 'react-router-dom/BrowserRouter'
 import Routes from './routes';
 import history from './services/history';
 
 function App() {
   return (
     <div className="App">
-      <Router history={history}>
+      <BrowserRouter basename='/fyp-testing-web'>
         <Routes />
-      </Router>
+      </BrowserRouter>
     </div>
   );
 }
