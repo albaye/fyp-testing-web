@@ -11,7 +11,7 @@ const Test3 = () => {
     return () => {
       window.removeEventListener('scroll', scrollHandler)
     }
-  }, [])
+  }, [scrollHandler])
 
   const scrollHandler = (e) => {
     console.log('mouse scroll x ', xPosition, ' y ', yPosition + window.scrollY - prevScroll);
@@ -40,7 +40,7 @@ const Test3 = () => {
         positions.push(`mouse move,${e.pageX},${e.pageY},${e.timeStamp}\n`)
       }}
       onClick={(e) => {
-        // console.log('mouse clicked', e);
+        console.log('mouse clicked x ', e.pageX, ' y ', e.pageY);
         positions.push(`click,${e.pageX},${e.pageY},${e.timeStamp}\n`)
       }}
     >
