@@ -4,7 +4,7 @@ const positions = ['Event name,x,y,timestamp\n']
 const Test3 = () => {
   let xPosition, yPosition, prevScroll = 0;
   useEffect(() => {
-    console.log('aaaaaaa')
+    // console.log('aaaaaaa')
     const root = document.getElementById('root')
     root.className += 'hide'
     window.addEventListener('scroll', scrollHandler)

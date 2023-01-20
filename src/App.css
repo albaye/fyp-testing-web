@@ -7,7 +7,7 @@ body,
 
 /* hide cursor everywhere in the page */
 .hide * {
-  /* cursor: none !important; */
+  cursor: none !important;
 }
 
 ::-webkit-scrollbar {
