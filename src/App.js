@@ -1,31 +1,15 @@
 // import logo from './logo.svg';
 import './App.css';
-import { Router } from 'react-router-dom';
+import BrowserRouter from 'react-router-dom/BrowserRouter'
 import Routes from './routes';
 import history from './services/history';
-// import Test2screen from './pages/Test2';
 
 function App() {
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-      <Router history={history}>
+      <BrowserRouter basename='/fyp-testing-web'>
         <Routes />
-      </Router>
-      {/* <Test2screen /> */}
+      </BrowserRouter>
     </div>
   );
 }
